@@ -31,6 +31,31 @@
 //   }
 // }
 
+// import java.util.Scanner;
+// public class array2D2 {
+//   public static void main(String[] args) {
+//     Scanner in = new Scanner (System.in);
+//     System.out.println("enter the no of rows : ");
+//     int rows = in.nextInt();
+//     System.out.println("enter the no of column : ");
+//     int column = in.nextInt();
+//     int[][] arr = new int[rows][column];
+
+//     System.out.println("enter the values of array : ");
+//     int sum = 0;
+//     for (int i = 0; i < rows; i++) {
+//       for(int j = 0; j < column; j++){
+
+//         arr[i][j] = in.nextInt();
+//         sum += arr[i][j];
+//       }
+//   }
+//   System.out.println("----------------------------");
+//   System.out.println(sum);
+// }
+// }
+
+
 import java.util.Scanner;
 public class array2D2 {
   public static void main(String[] args) {
@@ -38,21 +63,54 @@ public class array2D2 {
     System.out.println("enter the no of rows : ");
     int rows = in.nextInt();
     System.out.println("enter the no of column : ");
-    int column = in.nextInt();
-    int[][] arr = new int[rows][column];
+    int columns = in.nextInt();
+    int[][] arr = new int[rows][columns];
 
     System.out.println("enter the values of array : ");
-    int sum = 0;
+  
     for (int i = 0; i < rows; i++) {
-      for(int j = 0; j < column; j++){
-
+      for(int j = 0; j < columns; j++){
         arr[i][j] = in.nextInt();
-        sum += arr[i][j];
+       
       }
   }
-  System.out.println("----------------------------");
-  System.out.println(sum);
-}
-}
+       // Step 1: Find which rows and columns need to be zeroed
+        boolean[] zeroRows = new boolean[rows];
+        boolean[] zeroCols = new boolean[columns];
 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (arr[i][j] == 0) {
+                    zeroRows[i] = true;
+                    zeroCols[j] = true;
+                }
+            }
+        }
 
+        // Step 2: Set rows to zero
+        for (int i = 0; i < rows; i++) {
+            if (zeroRows[i]) {
+                for (int j = 0; j < columns; j++) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+          // Step 3: Set columns to zero
+        for (int j = 0; j < columns; j++) {
+            if (zeroCols[j]) {
+                for (int i = 0; i < rows; i++) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+
+        // Print the result
+        System.out.println("Resultant array:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
